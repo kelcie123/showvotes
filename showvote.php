@@ -45,7 +45,7 @@
     /**
      * Get Results
      */
-    $sql = 'SELECT username, poll_option_text
+    $sql = 'SELECT username, poll_option_text, group_id, user_lastvisit
             FROM `phpbb_users`
             LEFT JOIN `phpbb_poll_votes` ON phpbb_poll_votes.vote_user_id = phpbb_users.user_id
             LEFT JOIN phpbb_poll_options ON phpbb_poll_options.poll_option_id = phpbb_poll_votes.poll_option_id
@@ -61,10 +61,12 @@
                             <tr>
                                     <td><strong>Username</strong></td>
                                     <td><strong>Ψήφος</strong></td>
+                                    <td><strong>Ομάδα</strong></td>
+                                    <td><strong>Τελευταία Επίσκεψη</strong></td>
                             </tr>';
     while ($row = $db->sql_fetchrow($result))
     {
-            echo '<tr><td>'.$row['username'].'</td><td>'.$row['poll_option_text'].'</td>';
+            echo '<tr><td>'.$row['username'].'</td><td>'.$row['poll_option_text'].'</td><td>'.$row['group_id'].'</td><td>'.$row['user_lastvisit'].'</td>';
             echo "</tr>";
     }
     $db->sql_freeresult($result);
